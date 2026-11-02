@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+class ShoppingPayment
+{
+    // Added account balance variable (giving it a default starting balance)
+    int accountBalance = 5000; 
+    
+    // Fixed method name typo and capitalized 'Exception'
+    void processPayment(int payment) throws Exception 
+    {
+        if(payment > accountBalance)
+            throw new Exception("insufficient account balance");
+        
+        System.out.println("payment of Rs " + payment + " processed..");
+    }
+    
+    public static void main(String[] args)
+    {
+        // Fixed 'system.in' to 'System.in'
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter payment amount :");
+        int payment = sc.nextInt();
+        
+        // Created object instance
+        ShoppingPayment sp = new ShoppingPayment();
+        
+        try
+        {
+            // Called processPayment using the object reference 'sp'
+            sp.processPayment(payment);
+            
+            // Accessed accountBalance using 'sp'
+            System.out.println("remaining balance: " + (sp.accountBalance - payment));
+        }
+        catch(Exception e) // Capitalized 'Exception'
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        System.out.println("end of code ");
+        sc.close();  
+    }
+}
